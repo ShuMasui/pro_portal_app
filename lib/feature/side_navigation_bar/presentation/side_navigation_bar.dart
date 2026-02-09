@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:proportal_app/feature/side_navigation_bar/presentation/widgets/avator.dart';
 import 'package:proportal_app/feature/side_navigation_bar/presentation/widgets/rail_icons.dart';
 
 class SideNavigationBar extends StatelessWidget {
@@ -22,14 +23,7 @@ class SideNavigationBar extends StatelessWidget {
                 destinations: [...railIcons],
               ),
             ),
-            Container(
-              height: 50,
-              width: 80,
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.surface,
-              ),
-              child: Center(child: CircleAvatar(backgroundColor: Colors.amber)),
-            ),
+            Avator(),
           ],
         ),
         Expanded(child: Center(child: statefulNavigationShell)),

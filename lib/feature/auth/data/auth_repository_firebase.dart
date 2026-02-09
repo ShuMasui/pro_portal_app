@@ -40,7 +40,7 @@ class AuthRepositoryFirebase extends AuthRepository<User> {
     final User? tmp = FirebaseAuth.instance.currentUser;
 
     late final AppUser appUser;
-    if (tmp != null && tmp.email != null && tmp.displayName != null) {
+    if (tmp != null) {
       appUser = AppUser(
         id: tmp.uid,
         email: tmp.email ?? '',
