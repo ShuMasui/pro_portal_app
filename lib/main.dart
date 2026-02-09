@@ -3,10 +3,17 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:proportal_app/firebase_options.dart';
 import 'package:proportal_app/app.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:proportal_app/feature/auth/auth.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  runApp(ProviderScope(child: const App()));
+  final scope = ProviderScope(
+    /// DI
+    overrides: [authProvider.overrideWithValue(AuthRepositoryFirebase())],
+    child: const App(),
+  );
+
+  runApp(scope);
 }

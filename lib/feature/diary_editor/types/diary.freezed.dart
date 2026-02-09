@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Diary {
 
- int get id; String get title; String get body; DateTime get createdAt; DateTime get updatedAt; bool get isPrivate; List<String> get tags;
+ String get id; String get title; String get body; DateTime get createdAt; DateTime get updatedAt; bool get isPrivate; List<String> get tags;
 /// Create a copy of Diary
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $DiaryCopyWith<$Res>  {
   factory $DiaryCopyWith(Diary value, $Res Function(Diary) _then) = _$DiaryCopyWithImpl;
 @useResult
 $Res call({
- int id, String title, String body, DateTime createdAt, DateTime updatedAt, bool isPrivate, List<String> tags
+ String id, String title, String body, DateTime createdAt, DateTime updatedAt, bool isPrivate, List<String> tags
 });
 
 
@@ -68,7 +68,7 @@ class _$DiaryCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? body = null,Object? createdAt = null,Object? updatedAt = null,Object? isPrivate = null,Object? tags = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,body: null == body ? _self.body : body // ignore: cast_nullable_to_non_nullable
 as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -159,7 +159,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String title,  String body,  DateTime createdAt,  DateTime updatedAt,  bool isPrivate,  List<String> tags)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String body,  DateTime createdAt,  DateTime updatedAt,  bool isPrivate,  List<String> tags)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Diary() when $default != null:
 return $default(_that.id,_that.title,_that.body,_that.createdAt,_that.updatedAt,_that.isPrivate,_that.tags);case _:
@@ -180,7 +180,7 @@ return $default(_that.id,_that.title,_that.body,_that.createdAt,_that.updatedAt,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String title,  String body,  DateTime createdAt,  DateTime updatedAt,  bool isPrivate,  List<String> tags)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String body,  DateTime createdAt,  DateTime updatedAt,  bool isPrivate,  List<String> tags)  $default,) {final _that = this;
 switch (_that) {
 case _Diary():
 return $default(_that.id,_that.title,_that.body,_that.createdAt,_that.updatedAt,_that.isPrivate,_that.tags);case _:
@@ -200,7 +200,7 @@ return $default(_that.id,_that.title,_that.body,_that.createdAt,_that.updatedAt,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String title,  String body,  DateTime createdAt,  DateTime updatedAt,  bool isPrivate,  List<String> tags)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String body,  DateTime createdAt,  DateTime updatedAt,  bool isPrivate,  List<String> tags)?  $default,) {final _that = this;
 switch (_that) {
 case _Diary() when $default != null:
 return $default(_that.id,_that.title,_that.body,_that.createdAt,_that.updatedAt,_that.isPrivate,_that.tags);case _:
@@ -218,7 +218,7 @@ class _Diary implements Diary {
   const _Diary({required this.id, required this.title, required this.body, required this.createdAt, required this.updatedAt, required this.isPrivate, required final  List<String> tags}): _tags = tags;
   factory _Diary.fromJson(Map<String, dynamic> json) => _$DiaryFromJson(json);
 
-@override final  int id;
+@override final  String id;
 @override final  String title;
 @override final  String body;
 @override final  DateTime createdAt;
@@ -265,7 +265,7 @@ abstract mixin class _$DiaryCopyWith<$Res> implements $DiaryCopyWith<$Res> {
   factory _$DiaryCopyWith(_Diary value, $Res Function(_Diary) _then) = __$DiaryCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String title, String body, DateTime createdAt, DateTime updatedAt, bool isPrivate, List<String> tags
+ String id, String title, String body, DateTime createdAt, DateTime updatedAt, bool isPrivate, List<String> tags
 });
 
 
@@ -285,7 +285,7 @@ class __$DiaryCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? body = null,Object? createdAt = null,Object? updatedAt = null,Object? isPrivate = null,Object? tags = null,}) {
   return _then(_Diary(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,body: null == body ? _self.body : body // ignore: cast_nullable_to_non_nullable
 as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable

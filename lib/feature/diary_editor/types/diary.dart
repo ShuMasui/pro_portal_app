@@ -6,7 +6,7 @@ part 'diary.g.dart';
 @freezed
 abstract class Diary with _$Diary {
   const factory Diary({
-    required int id,
+    required String id,
     required String title,
     required String body,
     required DateTime createdAt,

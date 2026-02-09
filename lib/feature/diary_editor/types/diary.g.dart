@@ -7,7 +7,7 @@ part of 'diary.dart';
 // **************************************************************************
 
 _Diary _$DiaryFromJson(Map<String, dynamic> json) => _Diary(
-  id: (json['id'] as num).toInt(),
+  id: json['id'] as String,
   title: json['title'] as String,
   body: json['body'] as String,
   createdAt: DateTime.parse(json['createdAt'] as String),
