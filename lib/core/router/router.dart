@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 // ここから Featureごとのルート情報を取得していく
 import 'package:proportal_app/feature/home_screen/home_branch.dart';
-import 'package:proportal_app/feature/side_navigation_bar/presentation/side_navigation_bar.dart';
+import 'package:proportal_app/feature/side_navigation_bar/side_navigation_bar.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 

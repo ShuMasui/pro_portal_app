@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:proportal_app/feature/side_navigation_bar/presentation/widgets/rail_icons.dart';
 
 class SideNavigationBar extends StatelessWidget {
-  // Gotouer側から渡されるStatefulNavigationShellを受け取ってその状態を表示するだけ
+  // GotRouer側から渡されるStatefulNavigationShellを受け取ってその状態を表示するだけ
   final StatefulNavigationShell statefulNavigationShell;
 
   const SideNavigationBar({super.key, required this.statefulNavigationShell});
@@ -12,12 +12,26 @@ class SideNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final body = Row(
       children: <Widget>[
-        NavigationRail(
-          selectedIndex: statefulNavigationShell.currentIndex,
-          onDestinationSelected: (i) => statefulNavigationShell.goBranch(i),
-          destinations: [...railIcons],
+        Column(
+          children: <Widget>[
+            Expanded(
+              child: NavigationRail(
+                selectedIndex: statefulNavigationShell.currentIndex,
+                onDestinationSelected: (i) =>
+                    statefulNavigationShell.goBranch(i),
+                destinations: [...railIcons],
+              ),
+            ),
+            Container(
+              height: 50,
+              width: 80,
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.surface,
+              ),
+              child: Center(child: CircleAvatar(backgroundColor: Colors.amber)),
+            ),
+          ],
         ),
-        SizedBox(width: 20, height: double.infinity),
         Expanded(child: Center(child: statefulNavigationShell)),
       ],
     );
