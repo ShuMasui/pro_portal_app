@@ -12,11 +12,14 @@ import '../domain/edit_controller.dart';
 class PlaintextEditor extends StatefulWidget {
   final EditController controller;
   final ValueChanged<int> onChangedLetterCount;
+  final double? height, width;
 
   const PlaintextEditor({
     super.key,
     required this.controller,
     required this.onChangedLetterCount,
+    this.height = double.infinity,
+    this.width = double.infinity,
   });
 
   @override
@@ -62,6 +65,10 @@ class _PlaintextEditorState extends State<PlaintextEditor> {
       return _textAreaElement.value;
     };
 
+    widget.controller.clearTextCallback = () {
+      _textAreaElement.value = '';
+    };
+
     // dart:ui_webはブラウザーの定レイヤーAPIとやり取りするために、Dart内で用いられるHTML要素をまとめて管理するためのやつ
     // 要は、FlutterアプリでHTML要素をWidgetとして表示したかったらこれを使ってねって感じ
     // でui_webで登録されてるidを使ってhtmlelementviewはhtml要素をFlutterのWidgetとして呼び出すことができるようになる！
@@ -75,9 +82,6 @@ class _PlaintextEditorState extends State<PlaintextEditor> {
   @override
   void dispose() {
     super.dispose();
-
-    widget.controller.dispose();
-
     // HTML要素のクリーンアップはDartがDOMに対して自動的にやってくれる
     // ここでは、Dartに対する参照を明示的に削除するようにする（念のため）
     _textAreaElement.remove();
@@ -85,11 +89,15 @@ class _PlaintextEditorState extends State<PlaintextEditor> {
 
   @override
   Widget build(BuildContext context) {
-    return HtmlElementView(
-      viewType: _viewType,
-      onPlatformViewCreated: (_) {
-        _textAreaElement.focus();
-      },
+    return Container(
+      height: widget.height,
+      width: widget.width,
+      child: HtmlElementView(
+        viewType: _viewType,
+        onPlatformViewCreated: (_) {
+          _textAreaElement.focus();
+        },
+      ),
     );
   }
 }

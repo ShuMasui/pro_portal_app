@@ -17,6 +17,7 @@ class SideNavigationBar extends StatelessWidget {
           children: <Widget>[
             Expanded(
               child: NavigationRail(
+                backgroundColor: Theme.of(context).colorScheme.secondaryFixed,
                 selectedIndex: statefulNavigationShell.currentIndex,
                 onDestinationSelected: (i) =>
                     statefulNavigationShell.goBranch(i),
@@ -26,7 +27,20 @@ class SideNavigationBar extends StatelessWidget {
             Avator(),
           ],
         ),
-        Expanded(child: Center(child: statefulNavigationShell)),
+        Expanded(
+          child: Container(
+            alignment: AlignmentGeometry.center,
+            decoration: BoxDecoration(
+              gradient: RadialGradient(
+                colors: [
+                  Theme.of(context).colorScheme.surfaceDim,
+                  Theme.of(context).colorScheme.surfaceContainerHigh,
+                ],
+              ),
+            ),
+            child: Center(child: statefulNavigationShell),
+          ),
+        ),
       ],
     );
     return body;

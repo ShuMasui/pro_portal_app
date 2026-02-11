@@ -12,3 +12,5 @@ library;
 export './types/diary.dart';
 
 export './domain/diary_repository.dart';
+
+export './data/diary_repository_firestore.dart';

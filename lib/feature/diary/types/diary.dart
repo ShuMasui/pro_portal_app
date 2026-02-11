@@ -7,7 +7,7 @@ part 'diary.g.dart';
 @freezed
 abstract class Diary with _$Diary {
   const factory Diary({
-    required String id,
+    String? id,
     required String userId,
     required String title,
     required String body,
@@ -32,7 +32,7 @@ class TimestampConverter implements JsonConverter<DateTime?, Timestamp?> {
 }
 
 bool Function(Diary) validateDiary = (Diary diary) {
-  return diary.id.isNotEmpty &&
+  return diary.userId.isNotEmpty &&
       diary.userId.isNotEmpty &&
       diary.body.isNotEmpty &&
       diary.title.isNotEmpty;

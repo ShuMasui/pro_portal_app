@@ -1,5 +1,8 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../types/diary.dart';
 
+/// データ実装のリポジトリクラス
 abstract class DiaryRepository {
   /// 日記を入手します
   ///
@@ -14,3 +17,7 @@ abstract class DiaryRepository {
   /// [ diary ]　登録したい日記の種別です
   Future<void> registDiary({required Diary diary});
 }
+
+final diaryProvider = Provider<DiaryRepository>(
+  (ref) => throw UnimplementedError(),
+);

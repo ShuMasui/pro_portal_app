@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Diary {
 
- String get id; String get userId; String get title; String get body;@TimestampConverter() DateTime? get createdAt;@TimestampConverter() DateTime? get updatedAt; bool get isPrivate; List<String> get tags;
+ String? get id; String get userId; String get title; String get body;@TimestampConverter() DateTime? get createdAt;@TimestampConverter() DateTime? get updatedAt; bool get isPrivate; List<String> get tags;
 /// Create a copy of Diary
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $DiaryCopyWith<$Res>  {
   factory $DiaryCopyWith(Diary value, $Res Function(Diary) _then) = _$DiaryCopyWithImpl;
 @useResult
 $Res call({
- String id, String userId, String title, String body,@TimestampConverter() DateTime? createdAt,@TimestampConverter() DateTime? updatedAt, bool isPrivate, List<String> tags
+ String? id, String userId, String title, String body,@TimestampConverter() DateTime? createdAt,@TimestampConverter() DateTime? updatedAt, bool isPrivate, List<String> tags
 });
 
 
@@ -65,10 +65,10 @@ class _$DiaryCopyWithImpl<$Res>
 
 /// Create a copy of Diary
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? userId = null,Object? title = null,Object? body = null,Object? createdAt = freezed,Object? updatedAt = freezed,Object? isPrivate = null,Object? tags = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? userId = null,Object? title = null,Object? body = null,Object? createdAt = freezed,Object? updatedAt = freezed,Object? isPrivate = null,Object? tags = null,}) {
   return _then(_self.copyWith(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,body: null == body ? _self.body : body // ignore: cast_nullable_to_non_nullable
 as String,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
@@ -160,7 +160,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String userId,  String title,  String body, @TimestampConverter()  DateTime? createdAt, @TimestampConverter()  DateTime? updatedAt,  bool isPrivate,  List<String> tags)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String userId,  String title,  String body, @TimestampConverter()  DateTime? createdAt, @TimestampConverter()  DateTime? updatedAt,  bool isPrivate,  List<String> tags)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Diary() when $default != null:
 return $default(_that.id,_that.userId,_that.title,_that.body,_that.createdAt,_that.updatedAt,_that.isPrivate,_that.tags);case _:
@@ -181,7 +181,7 @@ return $default(_that.id,_that.userId,_that.title,_that.body,_that.createdAt,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String userId,  String title,  String body, @TimestampConverter()  DateTime? createdAt, @TimestampConverter()  DateTime? updatedAt,  bool isPrivate,  List<String> tags)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String userId,  String title,  String body, @TimestampConverter()  DateTime? createdAt, @TimestampConverter()  DateTime? updatedAt,  bool isPrivate,  List<String> tags)  $default,) {final _that = this;
 switch (_that) {
 case _Diary():
 return $default(_that.id,_that.userId,_that.title,_that.body,_that.createdAt,_that.updatedAt,_that.isPrivate,_that.tags);case _:
@@ -201,7 +201,7 @@ return $default(_that.id,_that.userId,_that.title,_that.body,_that.createdAt,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String userId,  String title,  String body, @TimestampConverter()  DateTime? createdAt, @TimestampConverter()  DateTime? updatedAt,  bool isPrivate,  List<String> tags)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String userId,  String title,  String body, @TimestampConverter()  DateTime? createdAt, @TimestampConverter()  DateTime? updatedAt,  bool isPrivate,  List<String> tags)?  $default,) {final _that = this;
 switch (_that) {
 case _Diary() when $default != null:
 return $default(_that.id,_that.userId,_that.title,_that.body,_that.createdAt,_that.updatedAt,_that.isPrivate,_that.tags);case _:
@@ -216,10 +216,10 @@ return $default(_that.id,_that.userId,_that.title,_that.body,_that.createdAt,_th
 @JsonSerializable()
 
 class _Diary implements Diary {
-  const _Diary({required this.id, required this.userId, required this.title, required this.body, @TimestampConverter() this.createdAt, @TimestampConverter() this.updatedAt, required this.isPrivate, required final  List<String> tags}): _tags = tags;
+  const _Diary({this.id, required this.userId, required this.title, required this.body, @TimestampConverter() this.createdAt, @TimestampConverter() this.updatedAt, required this.isPrivate, required final  List<String> tags}): _tags = tags;
   factory _Diary.fromJson(Map<String, dynamic> json) => _$DiaryFromJson(json);
 
-@override final  String id;
+@override final  String? id;
 @override final  String userId;
 @override final  String title;
 @override final  String body;
@@ -267,7 +267,7 @@ abstract mixin class _$DiaryCopyWith<$Res> implements $DiaryCopyWith<$Res> {
   factory _$DiaryCopyWith(_Diary value, $Res Function(_Diary) _then) = __$DiaryCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String userId, String title, String body,@TimestampConverter() DateTime? createdAt,@TimestampConverter() DateTime? updatedAt, bool isPrivate, List<String> tags
+ String? id, String userId, String title, String body,@TimestampConverter() DateTime? createdAt,@TimestampConverter() DateTime? updatedAt, bool isPrivate, List<String> tags
 });
 
 
@@ -284,10 +284,10 @@ class __$DiaryCopyWithImpl<$Res>
 
 /// Create a copy of Diary
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? userId = null,Object? title = null,Object? body = null,Object? createdAt = freezed,Object? updatedAt = freezed,Object? isPrivate = null,Object? tags = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? userId = null,Object? title = null,Object? body = null,Object? createdAt = freezed,Object? updatedAt = freezed,Object? isPrivate = null,Object? tags = null,}) {
   return _then(_Diary(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,body: null == body ? _self.body : body // ignore: cast_nullable_to_non_nullable
 as String,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable

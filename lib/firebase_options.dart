@@ -61,4 +61,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'pro-portal-7fd3b.firebasestorage.app',
     measurementId: 'G-C52VYKB8NV',
   );
+
 }

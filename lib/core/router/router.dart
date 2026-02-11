@@ -30,8 +30,9 @@ final routeProvider = Provider<GoRouter>((ref) {
       ...authRoute,
       // HomeScreen Branchs
       StatefulShellRoute.indexedStack(
-        builder: (context, state, navigationShell) =>
-            SideNavigationBar(statefulNavigationShell: navigationShell),
+        builder: (context, state, navigationShell) => Scaffold(
+          body: SideNavigationBar(statefulNavigationShell: navigationShell),
+        ),
         branches: [homeBranch],
       ),
     ],

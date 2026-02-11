@@ -13,7 +13,7 @@ class EditController extends ChangeNotifier {
   /// テキストフィールドをクリアにするためのコールバック
   /// /// 登録している場は、これを実装しないとclearTextなどが使えません
   VoidCallback? _clearText;
-  set getClearTextCallback(VoidCallback? callback) => _clearText = callback;
+  set clearTextCallback(VoidCallback? callback) => _clearText = callback;
 
   String getText() {
     if (_getText != null) {
@@ -31,8 +31,8 @@ class EditController extends ChangeNotifier {
   /// 登録されたコールバック関数を削除し、参照を解放します
   @override
   void dispose() {
-    super.dispose();
     _getText = null;
     _clearText = null;
+    super.dispose();
   }
 }

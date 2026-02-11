@@ -10,7 +10,9 @@ class Avator extends ConsumerWidget {
     return Container(
       height: 100,
       width: 80,
-      decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.secondaryFixed,
+      ),
       child: Center(
         child: ElevatedButton(
           onPressed: () {

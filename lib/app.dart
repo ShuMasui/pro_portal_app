@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:proportal_app/core/router/router.dart';
 
 /// アプリケーションの状態管理エントリーポイント
@@ -17,7 +18,12 @@ class App extends ConsumerWidget {
   /// return MaterialApp
   /// ```
   MaterialApp buildApp(BuildContext context, WidgetRef ref) {
-    return MaterialApp.router(routerConfig: ref.watch(routeProvider));
+    return MaterialApp.router(
+      routerConfig: ref.watch(routeProvider),
+      theme: ThemeData.light().copyWith(
+        textTheme: GoogleFonts.notoSansMonoTextTheme(),
+      ),
+    );
   }
 
   @override

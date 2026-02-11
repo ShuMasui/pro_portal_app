@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:proportal_app/feature/diary/types/diary.dart';
 
 import '../domain/diary_repository.dart';
-import 'package:proportal_app/feature/auth/auth.dart';
 
 class DiaryRepositoryFirestore extends DiaryRepository {
   final FirebaseFirestore firebaseFirestoreInstance;
@@ -49,7 +48,7 @@ class DiaryRepositoryFirestore extends DiaryRepository {
             .collection('diaryData')
             .doc(newDocRef.id)
             .set(diaryJson);
-      } on FirebaseException catch (e) {
+      } on FirebaseException {
         throw FirebaseException(
           plugin: 'DiaryRepositoryFirestore.registDiaryでFirestoreエラーが発生しています',
         );
