@@ -16,7 +16,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final topBar = Container(
+    final topBar = SizedBox(
       width: double.infinity,
       height: 80,
       child: Placeholder(),
@@ -32,7 +32,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       ],
     );
 
-    final bottomBar = Container(
+    final bottomBar = SizedBox(
       width: double.infinity,
       height: 80,
       child: Placeholder(),

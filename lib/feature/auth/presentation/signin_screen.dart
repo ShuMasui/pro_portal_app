@@ -161,7 +161,7 @@ class _SigninScreenState extends ConsumerState<SigninScreen> {
                 ),
               ),
               SizedBox(height: 50),
-              Container(
+              SizedBox(
                 height: 50,
                 width: 100,
                 child: ElevatedButton(
@@ -179,7 +179,7 @@ class _SigninScreenState extends ConsumerState<SigninScreen> {
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              title: Text('IDかパスワードが間違っています'),
+                              title: const Text('IDかパスワードが間違っています'),
                               actions: [
                                 ElevatedButton(
                                   onPressed: () {

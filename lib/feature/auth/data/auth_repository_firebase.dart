@@ -4,10 +4,14 @@ import '../domain/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepositoryFirebase extends AuthRepository<User> {
+  final FirebaseAuth firebaseAuthInstance;
+
+  AuthRepositoryFirebase({required this.firebaseAuthInstance});
+
   @override
   Future<void> signIn({required String email, required String pass}) async {
     /// FirebaseAuthのインスタンスはシングルトンなので、直接取得してOK
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
+    await firebaseAuthInstance.signInWithEmailAndPassword(
       email: email,
       password: pass,
     );
@@ -21,7 +25,7 @@ class AuthRepositoryFirebase extends AuthRepository<User> {
 
   @override
   Future<void> signOut() async {
-    await FirebaseAuth.instance.signOut();
+    await firebaseAuthInstance.signOut();
   }
 
   @override
@@ -32,12 +36,12 @@ class AuthRepositoryFirebase extends AuthRepository<User> {
 
   @override
   Stream<User?> authStateChanges() {
-    return FirebaseAuth.instance.authStateChanges();
+    return firebaseAuthInstance.authStateChanges();
   }
 
   @override
   AppUser? getCurrentUser() {
-    final User? tmp = FirebaseAuth.instance.currentUser;
+    final User? tmp = firebaseAuthInstance.currentUser;
 
     late final AppUser appUser;
     if (tmp != null) {

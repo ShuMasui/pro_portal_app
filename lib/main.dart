@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:proportal_app/firebase_options.dart';
@@ -11,7 +12,11 @@ Future<void> main() async {
 
   final scope = ProviderScope(
     /// DI
-    overrides: [authProvider.overrideWithValue(AuthRepositoryFirebase())],
+    overrides: [
+      authProvider.overrideWithValue(
+        AuthRepositoryFirebase(firebaseAuthInstance: FirebaseAuth.instance),
+      ),
+    ],
     child: const App(),
   );
 

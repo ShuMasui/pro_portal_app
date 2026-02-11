@@ -21,6 +21,13 @@ abstract class AuthRepository<T> {
   Future<void> createUser({required String email, required String pass});
 }
 
+/// AuthRepositoryオブジェクトを共通利用するためのプロバイダーです
+///
+/// ```
+/// ref.watch(authProvider).getCurrentUser();
+/// ```
+///
+/// でサインイン済みユーザーをゲットすることができます。
 final authProvider = Provider<AuthRepository>(
-  (ref) => throw UnimplementedError(),
+  (ref) => throw UnimplementedError('初期化されていません'),
 );
