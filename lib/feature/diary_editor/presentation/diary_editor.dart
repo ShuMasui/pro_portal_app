@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:proportal_app/feature/diary_editor/presentation/%20widgets/blinded_diary_editor.dart';
 import 'package:proportal_app/feature/diary_editor/presentation/%20widgets/default_diary_editor.dart';
 import 'package:proportal_app/feature/diary_editor/presentation/%20widgets/diary_tab.dart';
-import 'package:proportal_app/feature/diary_editor/presentation/viewmodels/diary_editor_viewmodels.dart';
+import 'package:proportal_app/feature/diary_editor/presentation/viewmodels/diary_editor_viewmodel.dart';
 
 import 'package:proportal_app/feature/plaintext_editor/plaintext_editor.dart';
 
@@ -24,9 +25,6 @@ class _DiaryEditorState extends ConsumerState<DiaryEditor> {
 
     _editController = EditController();
     _titleController = TextEditingController();
-
-    // 現在の状況をFetchしてViewmodelsの状態を更新
-    ref.read(diaryEditorViemodelsProvider.notifier).fetchCurrentPeriodStatsu();
   }
 
   @override
@@ -37,11 +35,51 @@ class _DiaryEditorState extends ConsumerState<DiaryEditor> {
     super.dispose();
   }
 
-  Future<void> onTapSaveButtonHandler(BuildContext context) async {}
+  Future<void> onTapSaveButtonHandler(BuildContext context) async {
+    await ref
+        .read(diaryEditorViewmodelProvider.notifier)
+        .saveDiary(
+          diaryBody: _editController.getText(),
+          diaryTitle: _titleController.text,
+        );
+  }
+
+  Future<void> showDiaryErrorDialog(BuildContext context) async {
+    debugPrint('totoro');
+    if (context.mounted) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('タイトルと本文を両方書いてください'),
+            actions: [
+              ElevatedButton(
+                onPressed: () {
+                  ref
+                      .read(diaryEditorViewmodelProvider.notifier)
+                      .handleErrorDialogSubmit();
+                  context.pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    /// 日記モードを可否を決定
+    ref.listen(diaryEditorViewmodelProvider, (_, next) {
+      next.when(
+        data: (_) {},
+        error: (_, _) {
+          showDiaryErrorDialog(context);
+        },
+        loading: () {},
+      );
+    });
 
     final body = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,7 +87,7 @@ class _DiaryEditorState extends ConsumerState<DiaryEditor> {
         DiaryTab(),
         SizedBox(height: 10),
         Expanded(
-          child: !ref.watch(diaryEditorViemodelsProvider).isLoading
+          child: ref.watch(diaryEditorViewmodelProvider).value!.isCompleted
               ? BlindedDiaryEditor()
               : DefaultDiaryEditor(
                   editController: _editController,
