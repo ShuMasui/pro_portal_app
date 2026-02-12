@@ -1,8 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import 'package:proportal_app/feature/auth/domain/auth_repository.dart';
+import 'package:proportal_app/feature/auth/presentation/viewmodels/auth_viewmodels.dart';
+import 'package:proportal_app/feature/auth/presentation/widgets/siginin_button.dart';
+import 'package:proportal_app/feature/auth/presentation/widgets/signin_email_field.dart';
+import 'package:proportal_app/feature/auth/presentation/widgets/signin_pass_field.dart';
+import 'package:proportal_app/feature/auth/presentation/widgets/signin_textfield_title.dart';
 
 class SigninScreen extends ConsumerStatefulWidget {
   const SigninScreen({super.key});
@@ -12,8 +14,6 @@ class SigninScreen extends ConsumerStatefulWidget {
 }
 
 class _SigninScreenState extends ConsumerState<SigninScreen> {
-  bool _isObscure = true;
-
   late final TextEditingController _emailController;
   late final TextEditingController _passController;
 
@@ -23,8 +23,6 @@ class _SigninScreenState extends ConsumerState<SigninScreen> {
 
     _emailController = TextEditingController();
     _passController = TextEditingController();
-
-    _isObscure = true;
   }
 
   @override
@@ -44,14 +42,12 @@ class _SigninScreenState extends ConsumerState<SigninScreen> {
     );
 
     final TextStyle textStyle = TextStyle(
-      fontFamily: 'monospace',
       fontSize: 20,
       fontWeight: FontWeight.bold,
       color: Theme.of(context).colorScheme.onPrimaryFixedVariant,
     );
 
     final TextStyle passStyle = TextStyle(
-      fontFamily: 'monospace',
       fontSize: 20,
       height: 1.3,
       fontWeight: FontWeight.bold,
@@ -95,114 +91,26 @@ class _SigninScreenState extends ConsumerState<SigninScreen> {
                 ),
               ),
               SizedBox(height: 40),
-              Container(
-                padding: const EdgeInsets.only(left: 15),
-                alignment: AlignmentGeometry.centerLeft,
-                child: Text('メールアドレス', style: textStyle),
-              ),
+              SigninTextfieldTitle(text: 'メールアドレス', style: textStyle),
               SizedBox(height: 5),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 0,
-                  horizontal: 20,
-                ),
-                decoration: credentialBoxDecoration,
-                width: 300,
-                height: 45,
-                child: TextField(
-                  controller: _emailController,
-                  cursorHeight: textStyle.fontSize! * 0.8,
-                  maxLines: 1,
-                  decoration: InputDecoration(border: InputBorder.none),
-                  style: passStyle,
-                ),
+              SigninEmailField(
+                credentialBoxDecoration: credentialBoxDecoration,
+                controller: _emailController,
+                style: passStyle,
               ),
               SizedBox(height: 50),
-              Container(
-                padding: const EdgeInsets.only(left: 15),
-                alignment: AlignmentGeometry.centerLeft,
-                child: Text('パスワード', style: textStyle),
-              ),
+              SigninTextfieldTitle(text: 'パスワード', style: textStyle),
               SizedBox(height: 5),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 0,
-                  horizontal: 20,
-                ),
-                decoration: credentialBoxDecoration,
-                width: 300,
-                height: 45,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        controller: _passController,
-                        cursorHeight: textStyle.fontSize! * 0.8,
-                        maxLines: 1,
-                        decoration: InputDecoration(border: InputBorder.none),
-                        style: passStyle,
-                        obscureText: _isObscure,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        setState(() {
-                          _isObscure = !_isObscure;
-                        });
-                      },
-                      icon: Icon(
-                        _isObscure
-                            ? Icons.remove_red_eye_outlined
-                            : Icons.no_encryption_rounded,
-                        color: Theme.of(context).colorScheme.onInverseSurface,
-                      ),
-                    ),
-                  ],
-                ),
+              SigninPassField(
+                credentialBoxDecoration: credentialBoxDecoration,
+                controller: _passController,
+                style: passStyle,
               ),
               SizedBox(height: 50),
-              SizedBox(
-                height: 50,
-                width: 100,
-                child: ElevatedButton(
-                  onPressed: () async {
-                    try {
-                      await ref
-                          .watch(authProvider)
-                          .signIn(
-                            email: _emailController.text,
-                            pass: _passController.text,
-                          );
-                    } on FirebaseAuthException {
-                      if (mounted) {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: const Text('IDかパスワードが間違っています'),
-                              actions: [
-                                ElevatedButton(
-                                  onPressed: () {
-                                    _emailController.clear();
-                                    _passController.clear();
-                                    context.pop();
-                                  },
-                                  child: Text('OK'),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      }
-                    }
-                  },
-                  child: Text(
-                    'サインイン',
-                    style: textStyle.copyWith(
-                      fontSize: textStyle.fontSize! * 0.8,
-                    ),
-                  ),
-                ),
+              SigininButton(
+                emailController: _emailController,
+                passController: _passController,
+                textStyle: textStyle,
               ),
             ],
           ),
