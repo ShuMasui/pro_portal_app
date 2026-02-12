@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proportal_app/feature/diary_editor/presentation/%20widgets/diary_label.dart';
 import 'package:proportal_app/feature/diary_editor/presentation/%20widgets/save_button.dart';
 import 'package:proportal_app/feature/plaintext_editor/plaintext_editor.dart';
 
@@ -68,28 +69,6 @@ class DefaultDiaryEditor extends StatelessWidget {
             ],
           ),
         ],
-      ),
-    );
-  }
-}
-
-class DiaryLabel extends StatelessWidget {
-  const DiaryLabel({super.key, required String label}) : _label = label;
-
-  final String _label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(left: 5),
-      alignment: AlignmentGeometry.centerLeft,
-      child: Text(
-        _label,
-        style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: Theme.of(context).colorScheme.onPrimaryFixedVariant,
-        ),
       ),
     );
   }

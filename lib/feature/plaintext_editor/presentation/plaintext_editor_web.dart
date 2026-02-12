@@ -89,7 +89,7 @@ class _PlaintextEditorState extends State<PlaintextEditor> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: widget.height,
       width: widget.width,
       child: HtmlElementView(
