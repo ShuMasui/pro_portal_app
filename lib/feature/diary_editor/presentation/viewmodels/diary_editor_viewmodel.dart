@@ -8,8 +8,22 @@ part 'diary_editor_viewmodel.g.dart';
 @riverpod
 class DiaryEditorViewmodel extends _$DiaryEditorViewmodel {
   @override
-  FutureOr<DiaryEditorState> build() {
-    return DiaryEditorState.init();
+  FutureOr<DiaryEditorState> build() async {
+    late final DiaryEditorState tmpState;
+
+    final appUser = ref.read(authProvider).getCurrentUser();
+    if (appUser == null) {
+      throw Exception('ログイン済みではないユーザーがDiayrEditorにアクセスしています');
+    } else {
+      final hasPosted = await ref
+          .read(diaryProvider)
+          .checkTodayDiary(user: appUser);
+      tmpState = hasPosted
+          ? DiaryEditorState.completed()
+          : DiaryEditorState.init();
+    }
+
+    return tmpState;
   }
 
   Future<void> saveDiary({
@@ -42,6 +56,6 @@ class DiaryEditorViewmodel extends _$DiaryEditorViewmodel {
   }
 
   Future<void> handleErrorDialogSubmit() async {
-    state = AsyncLoading();
+    state = AsyncData(DiaryEditorState.init());
   }
 }

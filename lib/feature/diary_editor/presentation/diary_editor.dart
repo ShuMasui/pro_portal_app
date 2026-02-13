@@ -87,13 +87,21 @@ class _DiaryEditorState extends ConsumerState<DiaryEditor> {
         DiaryTab(),
         SizedBox(height: 10),
         Expanded(
-          child: ref.watch(diaryEditorViewmodelProvider).value!.isCompleted
-              ? BlindedDiaryEditor()
-              : DefaultDiaryEditor(
-                  editController: _editController,
-                  titleController: _titleController,
-                  onTapSaveButtonHandler: () => onTapSaveButtonHandler(context),
-                ),
+          child: ref
+              .watch(diaryEditorViewmodelProvider)
+              .maybeWhen(
+                data: (state) {
+                  return state.isCompleted
+                      ? BlindedDiaryEditor()
+                      : DefaultDiaryEditor(
+                          editController: _editController,
+                          titleController: _titleController,
+                          onTapSaveButtonHandler: () =>
+                              onTapSaveButtonHandler(context),
+                        );
+                },
+                orElse: () => SizedBox.expand(),
+              ),
         ),
       ],
     );
