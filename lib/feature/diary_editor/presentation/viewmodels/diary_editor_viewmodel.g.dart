@@ -34,7 +34,7 @@ final class DiaryEditorViewmodelProvider
 }
 
 String _$diaryEditorViewmodelHash() =>
-    r'38e52598990595ffe12b3c17cf9e9cbbfee5e8c6';
+    r'1a3612816634f7fee042271c270c4fad96d8a2b7';
 
 abstract class _$DiaryEditorViewmodel extends $AsyncNotifier<DiaryEditorState> {
   FutureOr<DiaryEditorState> build();

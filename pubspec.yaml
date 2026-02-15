@@ -29,6 +29,10 @@ dependencies:
 
   google_fonts: 
 
+  uuid: 
+
+  dio: 
+
 
   cupertino_icons: ^1.0.8
 
