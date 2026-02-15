@@ -60,6 +60,9 @@ class ChatViewmodel extends _$ChatViewmodel {
     }
   }
 
+  /// 名言を取得し，チャット画面に挿入します
+  ///
+  /// ボタンから呼び出されることを前提としているため，ダミーメッセージの登録も行います
   Future<void> fetchQuote() async {
     /// NOTE: チャットが始まった場合は必ず，状態を更新する
     state = AsyncData(
@@ -88,7 +91,7 @@ class ChatViewmodel extends _$ChatViewmodel {
           .setAiMessage(
             '${quote.quote}\n- ${quote.author}\nを教えます！\nいい日記が書けるようにお祈りしています！',
           );
-      debugPrint('fetchQuote succeeded: ${quote.quote} - ${quote.author}');
+      // debugPrint('fetchQuote succeeded: ${quote.quote} - ${quote.author}');
     } catch (e) {
       debugPrint(e.toString());
     }

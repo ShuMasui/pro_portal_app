@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import './widgets/left_body.dart';
 import './widgets/right_body.dart';
+import './widgets/bottom_bar.dart';
+import './widgets/top_bar.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -18,14 +20,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final topBar = SizedBox(
-      width: double.infinity,
-      height: 80,
-      child: Placeholder(),
-    );
+    final topBar = const TopBar();
 
-    final leftBody = LeftBody();
-    final rightBody = RightBody();
+    final leftBody = const LeftBody();
+    final rightBody = const RightBody();
 
     final body = Row(
       children: <Widget>[
@@ -35,11 +33,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       ],
     );
 
-    final bottomBar = SizedBox(
-      width: double.infinity,
-      height: 80,
-      child: Placeholder(),
-    );
+    final bottomBar = const BottomBar();
 
     final screen = Column(
       children: <Widget>[
