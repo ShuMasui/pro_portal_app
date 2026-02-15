@@ -1,5 +1,4 @@
 import 'package:flutter/rendering.dart';
-import 'package:proportal_app/feature/chat_screen/domain/chat_repository.dart';
 import 'package:proportal_app/feature/chat_screen/domain/quote_repository.dart';
 import 'package:proportal_app/feature/chat_screen/presentation/viewmodels/chat_data.dart';
 import 'package:proportal_app/feature/chat_screen/presentation/viewmodels/chat_list.dart';
@@ -45,7 +44,7 @@ class ChatViewmodel extends _$ChatViewmodel {
       ref.watch(chatDataProvider(messageId).notifier).setUserMessage(message);
 
       final response = await Future(
-        () => '現在AIチャット機能はまだご利用いただけません',
+        () => '現在，AIチャット機能はご利用いただけません',
       ); //await ref.watch(chatProvider).sendMessage(message);
 
       final responseMessageId = ChatList.createChatId(

@@ -14,7 +14,7 @@ class RightBubble extends StatelessWidget {
         alignment: Alignment.centerRight,
         child: ConstrainedBox(
           constraints: BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width * 0.5,
+            maxWidth: MediaQuery.of(context).size.width * 0.4 * 0.8,
           ),
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),

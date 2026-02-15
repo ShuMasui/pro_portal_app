@@ -39,22 +39,47 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
           },
           data: (data) {
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                ChatTab(),
+                SizedBox(height: 10),
                 Expanded(
-                  child: data.isInit
-                      ? const ChatInitialList()
-                      : const ChatScreenList(),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.surfaceContainerLowest,
+                      borderRadius: BorderRadius.circular(20),
+                      border: BoxBorder.all(
+                        color: Theme.of(context).colorScheme.secondaryFixed,
+                      ),
+                      boxShadow: [
+                        BoxShadow(color: Colors.grey.shade200, blurRadius: 50),
+                      ],
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 30,
+                      horizontal: 40,
+                    ),
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: data.isInit
+                              ? const ChatInitialList()
+                              : const ChatScreenList(),
+                        ),
+                        SizedBox(height: 10),
+                        InputField(controller: _controller),
+                      ],
+                    ),
+                  ),
                 ),
-                InputField(controller: _controller),
               ],
             );
           },
         );
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-      child: body,
-    );
+    return body;
   }
 }
 

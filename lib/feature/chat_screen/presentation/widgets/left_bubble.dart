@@ -21,7 +21,7 @@ class LeftBubble extends StatelessWidget {
             SizedBox(width: 10),
             ConstrainedBox(
               constraints: BoxConstraints(
-                maxWidth: MediaQuery.of(context).size.width * 0.8,
+                maxWidth: MediaQuery.of(context).size.width * 0.4 * 0.8,
               ),
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),

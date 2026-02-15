@@ -58,7 +58,7 @@ class _InputFieldState extends ConsumerState<InputField> {
   @override
   Widget build(BuildContext context) {
     final center = Container(
-      height: isExtended ? 200 : 50,
+      height: isExtended ? 150 : 50,
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(50),

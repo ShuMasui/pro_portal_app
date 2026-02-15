@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:proportal_app/feature/home_screen/presentation/widgets/left_body.dart';
+import './widgets/left_body.dart';
+import './widgets/right_body.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -24,7 +25,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
 
     final leftBody = LeftBody();
-    final rightBody = Container(child: Placeholder());
+    final rightBody = RightBody();
 
     final body = Row(
       children: <Widget>[
