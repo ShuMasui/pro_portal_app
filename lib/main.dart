@@ -14,6 +14,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
+  // ローカルでFireStoreエミュレータを起動するために，インスタンスの接続先をローカルに設定
+  FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
+
   final scope = ProviderScope(
     /// DI
     overrides: [
