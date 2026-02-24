@@ -9,6 +9,7 @@ import 'package:proportal_app/feature/auth/auth.dart';
 import 'package:proportal_app/feature/auth/auth_route.dart';
 import 'package:proportal_app/feature/home_screen/home_branch.dart';
 import 'package:proportal_app/feature/side_navigation_bar/side_navigation_bar.dart';
+import 'package:proportal_app/feature/stats_screen/stats_branch.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 
@@ -33,7 +34,7 @@ final routeProvider = Provider<GoRouter>((ref) {
         builder: (context, state, navigationShell) => Scaffold(
           body: SideNavigationBar(statefulNavigationShell: navigationShell),
         ),
-        branches: [homeBranch],
+        branches: [homeBranch, statsBranch],
       ),
     ],
 
